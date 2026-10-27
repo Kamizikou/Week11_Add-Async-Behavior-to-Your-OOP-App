@@ -6,12 +6,12 @@
 
 ---
 
-## 📌 Scenario Description
+## Description
 This application extends our OOP vehicle application hierarchy from Week 10 by integrating Dart's asynchronous programming features (`Future`, `async`, and `await`)[span_0](start_span)[span_0](end_span)[span_1](start_span)[span_1](end_span). It demonstrates how to perform simulated time-consuming operations—such as running a system diagnostic scan—without blocking execution flow or freezing application logic[span_2](start_span)[span_2](end_span).
 
 ---
 
-## 🛠 Features & Rubric Alignment
+## Features & Rubric Alignment
 
 - **Base Class & Inheritance (`Vehicle`, `ElectricCar`, `Motorcycle`):** Maintained the vehicle hierarchy featuring abstract contracts (`Startable`), encapsulation, method overriding, and mixins (`DiagnosticLogger`)[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span).
 - **Async Method (`runFullSystemDiagnostic`):** Added an asynchronous method returning a `Future<String>` to simulate data processing or diagnostic checks[span_5](start_span)[span_5](end_span).
@@ -21,9 +21,10 @@ This application extends our OOP vehicle application hierarchy from Week 10 by i
 
 ---
 
-## 🚀 How to Run
+## How to Run
 
-### Option 1: Command Line (Local Dart SDK)
-Run the application directly using the Dart SDK:
-```bash
-dart run main.dart
+### Run in Dartpad
+- open dartpad.dev
+- Copy & Paste the code from Week11_Add-Async-Behavior-to-Your-OOP-App_Code
+- run
+
