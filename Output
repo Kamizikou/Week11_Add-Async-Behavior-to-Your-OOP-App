@@ -1,0 +1,22 @@
+=== PC16 WEEK 11: ASYNC DART PROGRAM ===
+
+--- Testing Polymorphic Behavior ---
+Silent ignition! The electric Tesla Model 3 is now ready to drive.
+Electric Car: Tesla Model 3 | Speed: 80 km/h | Battery: 85%
+Stopping the Tesla Model 3 vehicle...
+------------------------------------
+Vroom! The Yamaha MT-07 motorcycle engine revs up.
+Motorcycle: Yamaha MT-07 | Speed: 100 km/h | No Sidecar
+Stopping the Yamaha MT-07 vehicle...
+------------------------------------
+
+Inspector Alex is performing checks...
+[DIAGNOSTIC LOG - 2026-10-27 16:01:39.034]: Inspecting brand: Tesla Model 3, Speed: 80 km/h
+Electric Car: Tesla Model 3 | Speed: 80 km/h | Battery: 85%
+
+--- WEEK 11 ASYNC / AWAIT DEMONSTRATION ---
+Preparing diagnostic scan... (This prints BEFORE the async result)
+ -> [Async Operation Started] Running system diagnostics for Tesla Model 3...
+ -> [Async Operation Complete] Diagnostic Result: All system modules operational for Tesla Model 3.
+
+=== Program finished ===
