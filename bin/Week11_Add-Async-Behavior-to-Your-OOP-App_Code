@@ -1,0 +1,127 @@
+abstract class Startable {
+  void start();
+  void stop();
+}
+
+mixin DiagnosticLogger {
+  void logDiagnostic(String message) {
+    print('[DIAGNOSTIC LOG - ${DateTime.now()}]: $message');
+  }
+}
+
+class Vehicle implements Startable {
+  String _brand;
+  int _speed;
+
+  Vehicle(this._brand, this._speed);
+
+  String get brand => _brand;
+  int get speed => _speed;
+
+  set speed(int value) {
+    if (value >= 0) {
+      _speed = value;
+    }
+  }
+
+  void start() {
+    print('Starting the $brand vehicle...');
+  }
+
+  void stop() {
+    print('Stopping the $brand vehicle...');
+  }
+
+  void displayInfo() {
+    print('Vehicle Brand: $_brand | Current Speed: $_speed km/h');
+  }
+
+  // --- WEEK 11 ADDITION: Async Method with Delay ---
+  Future<String> runFullSystemDiagnostic() async {
+    print(' -> [Async Operation Started] Running system diagnostics for $_brand...');
+    
+    // Simulate data processing/fetch delay of 2 seconds
+    await Future.delayed(Duration(seconds: 2)); 
+    
+    return ' -> [Async Operation Complete] Diagnostic Result: All system modules operational for $_brand.';
+  }
+}
+
+class ElectricCar extends Vehicle {
+  int batteryPercentage;
+
+  ElectricCar(String brand, int speed, this.batteryPercentage)
+      : super(brand, speed);
+
+  void displayInfo() {
+    print('Electric Car: $brand | Speed: ${speed} km/h | Battery: $batteryPercentage%');
+  }
+
+  void start() {
+    print('Silent ignition! The electric $brand is now ready to drive.');
+  }
+
+  void chargeBattery() {
+    batteryPercentage = 100;
+    print('Battery fully charged to 100%.');
+  }
+}
+
+class Motorcycle extends Vehicle {
+  bool hasSidecar;
+
+  Motorcycle(String brand, int speed, {this.hasSidecar = false})
+      : super(brand, speed);
+
+  void displayInfo() {
+    String sidecarStatus = hasSidecar ? 'With Sidecar' : 'No Sidecar';
+    print('Motorcycle: $brand | Speed: ${speed} km/h | $sidecarStatus');
+  }
+
+  void start() {
+    print('Vroom! The $brand motorcycle engine revs up.');
+  }
+}
+
+class ServiceInspector with DiagnosticLogger {
+  String inspectorName;
+
+  ServiceInspector(this.inspectorName);
+
+  void inspectVehicle(Vehicle vehicle) {
+    print('\nInspector $inspectorName is performing checks...');
+    logDiagnostic('Inspecting brand: ${vehicle.brand}, Speed: ${vehicle.speed} km/h');
+    vehicle.displayInfo();
+  }
+}
+
+// --- WEEK 11: ---
+void main() async {
+  print('=== PC16 WEEK 11: ASYNC DART PROGRAM ===\n');
+
+  ElectricCar tesla = ElectricCar('Tesla Model 3', 80, 85);
+  Motorcycle yamaha = Motorcycle('Yamaha MT-07', 100, hasSidecar: false);
+
+  List<Vehicle> fleet = [tesla, yamaha];
+
+  print('--- Testing Polymorphic Behavior ---');
+  for (var vehicle in fleet) {
+    vehicle.start();
+    vehicle.displayInfo();
+    vehicle.stop();
+    print('------------------------------------');
+  }
+
+  ServiceInspector inspector = ServiceInspector('Alex');
+  inspector.inspectVehicle(tesla);
+
+  print('\n--- WEEK 11 ASYNC / AWAIT DEMONSTRATION ---');
+  
+  print('Preparing diagnostic scan... (This prints BEFORE the async result)');
+
+  String result = await tesla.runFullSystemDiagnostic();
+  
+  print(result);
+
+  print('\n=== Program finished ===');
+}
